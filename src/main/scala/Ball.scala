@@ -7,7 +7,8 @@ case class Ball(a:Int , b:Int , c:Int) {
   private val speed = 2
   B.x += a
   B.y += b
-
+  var width = 0
+  var height= 0
   def draw(g:Graphics): Unit = {
     g.setColor(Color.BLUE)
     if(c > 0){
@@ -16,8 +17,8 @@ case class Ball(a:Int , b:Int , c:Int) {
       g.drawString(B.x + "," + B.y, 300, dy)
     }
     g.fillOval(B.x, B.y, rad, rad)
-    checkCollisionY(750)
-    checkCollisionX(1050)
+    checkCollisionY(height)
+    checkCollisionX(width)
 
   }
   //I want to refer to screenWidth in Core.class

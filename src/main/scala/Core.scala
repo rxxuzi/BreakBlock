@@ -39,6 +39,7 @@ class Core() extends JPanel {
     g.setFont(new Font("Serif", Font.BOLD, 20))
     g.drawString((nowTime - startTime) + "ms", 10, 20)
     g.drawString(getWidth + ", " + getHeight, 10, 40)
+    g.drawString("Balls :" + balls.size, 10, 60)
 
 
   }
@@ -49,11 +50,10 @@ class Core() extends JPanel {
     balls(0).B.x = mx
     balls(0).B.y = my
 
-//    enemy(0).draw(g)
-
-    //draw all balls
     for (ball <- balls) {
       ball.draw(g)
+      ball.width = getWidth
+      ball.height = getHeight
     }
     sleep()
 
