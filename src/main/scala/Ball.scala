@@ -3,15 +3,23 @@ import javax.swing.JPanel
 
 case class Ball(a:Int , b:Int , c:Color) extends JPanel{
   private val  rad = 50
-  Info.x = a
-  Info.y = b
+  B.x = a
+  B.y = b
   def draw(g:Graphics): Unit = {
     g.setColor(c)
-    g.fillOval(Info.x, Info.y, rad, rad)
+    g.fillOval(B.x, B.y, rad, rad)
+  }
+
+  def calc(x: Int, y: Int): Unit = {
+
+  }
+
+  def move(x: Int, y: Int): Unit ={
+    calc(x,y)
   }
 
   //Balls Location
-  object Info {
+  object B {
     var x = 200
     var y = 200
     var r = true

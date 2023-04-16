@@ -37,8 +37,8 @@ case class Core() extends JPanel {
   private def draw(g: Graphics): Unit = {
 
     g.setColor(Color.white)
-    balls(0).Info.x = mx
-    balls(0).Info.y = my
+    balls(0).B.x = mx
+    balls(0).B.y = my
 
     enemy(0).draw(g)
 
