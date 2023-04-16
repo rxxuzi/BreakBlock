@@ -9,9 +9,17 @@ case class Enemy() extends JPanel{
 
   def draw(g: Graphics): Unit = {
     g.setColor(Color.CYAN)
-    g.drawRect(100, 100, 100, 100)
+    g.drawRect(E.x, E.y, E.d, E.d)
   }
-  def draw(g: Graphics2D): Unit = {
-    g.draw3DRect(100, 100, 10, 10, true)
+
+//  //if the enemy is hit, remove it from the game
+//  def delete(): Unit = {
+//    new Core().enemys() -= this
+//  }
+
+  object E{
+    val x = 100
+    val y = 100
+    val d = 100
   }
 }

@@ -13,7 +13,8 @@ case class Ball(a:Int , b:Int , c:Int) {
     g.setColor(Color.BLUE)
     if(c > 0){
       g.setColor(Color.RED)
-      val dy = 200 + c * 20
+      val dy = 200 + c
+
       g.drawString(B.x + "," + B.y, 300, dy)
     }
     g.fillOval(B.x, B.y, rad, rad)

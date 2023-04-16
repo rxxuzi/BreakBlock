@@ -7,15 +7,15 @@ import scala.collection.mutable.ArrayBuffer
 
 class Core() extends JPanel {
   //Ball classのList
-  private final val balls = ArrayBuffer[Ball]()
+  final val balls = ArrayBuffer[Ball]()
   //Enemy classのList
-  private final val enemy =  ArrayBuffer[Enemy]()
+  final val enemys =  ArrayBuffer[Enemy]()
   //StartTime
   private final val startTime = System.currentTimeMillis()
   //Ballの半径
   private final val rad = 25
   //clickCount
-  var clickCount = 1
+  private final var clickCount = 1
 
   private var mx = 300 ;private var my = 300 // マウスの座標
   //SleepTime
@@ -27,7 +27,7 @@ class Core() extends JPanel {
   this.addMouseMotionListener(new MML())
 
   balls += Ball(mx, my , 0)
-  enemy += Enemy()
+  enemys += Enemy()
 
 
 
@@ -39,7 +39,7 @@ class Core() extends JPanel {
     g.setFont(new Font("Serif", Font.BOLD, 20))
     g.drawString((nowTime - startTime) + "ms", 10, 20)
     g.drawString(getWidth + ", " + getHeight, 10, 40)
-    g.drawString("Balls :" + balls.size, 10, 60)
+    g.drawString("Balls :" + (balls.size - 1), 10, 60)
 
 
   }
@@ -55,6 +55,11 @@ class Core() extends JPanel {
       ball.width = getWidth
       ball.height = getHeight
     }
+
+    for(enemy <- enemys){
+      enemy.draw(g)
+    }
+    if(clickCount > 2) enemys -= Enemy()
     sleep()
 
   }
