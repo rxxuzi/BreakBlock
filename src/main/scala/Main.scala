@@ -14,9 +14,9 @@ object Main {
     jf.setDefaultCloseOperation(3)
     jf.setTitle("Balls")
     jf.add {
-      Core()
+      new Core()
     }
-    jf.setSize(750, 750)
+    jf.setSize(1050, 750)
 
     val vector = new Vector(0, 0, 0)
     println(vector)

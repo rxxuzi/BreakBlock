@@ -5,23 +5,31 @@ import java.awt.{Color, Font, Graphics}
 import javax.swing.JPanel
 import scala.collection.mutable.ArrayBuffer
 
-case class Core() extends JPanel {
+class Core() extends JPanel {
   //Ball classのList
   private final val balls = ArrayBuffer[Ball]()
   //Enemy classのList
   private final val enemy =  ArrayBuffer[Enemy]()
   //StartTime
   private final val startTime = System.currentTimeMillis()
-  val rad = 25
+  //Ballの半径
+  private final val rad = 25
+  //clickCount
+  var clickCount = 1
+
   private var mx = 300 ;private var my = 300 // マウスの座標
+  //SleepTime
   private final val sleepSpeed = 2
+
   this.setFocusable(true)
   this.setBackground(Color.black)
   this.addMouseListener(new ML())
   this.addMouseMotionListener(new MML())
 
-  balls += Ball(mx, my , Color.white)
+  balls += Ball(mx, my , 0)
   enemy += Enemy()
+
+
 
   override def paintComponent(g: Graphics): Unit = {
     super.paintComponent(g)
@@ -30,6 +38,7 @@ case class Core() extends JPanel {
     g.setColor(Color.yellow)
     g.setFont(new Font("Serif", Font.BOLD, 20))
     g.drawString((nowTime - startTime) + "ms", 10, 20)
+    g.drawString(getWidth + ", " + getHeight, 10, 40)
 
 
   }
@@ -37,16 +46,17 @@ case class Core() extends JPanel {
   private def draw(g: Graphics): Unit = {
 
     g.setColor(Color.white)
-    balls(0).Info.x = mx
-    balls(0).Info.y = my
+    balls(0).B.x = mx
+    balls(0).B.y = my
 
-    enemy(0).draw(g)
+//    enemy(0).draw(g)
 
     //draw all balls
     for (ball <- balls) {
       ball.draw(g)
     }
     sleep()
+
   }
 
   private def sleep(): Unit = {
@@ -70,7 +80,8 @@ case class Core() extends JPanel {
   private class ML() extends MouseListener{
     override def mouseClicked(e: MouseEvent): Unit = {
       println("clicked")
-      balls += Ball(e.getX - rad, e.getY - rad, Color.ORANGE)
+      balls += Ball(e.getX - rad, e.getY - rad, clickCount)
+      clickCount += e.getClickCount
     }
     override def mousePressed(e: MouseEvent): Unit = {}
     override def mouseReleased(e: MouseEvent): Unit = {}
