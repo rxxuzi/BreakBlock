@@ -9,11 +9,12 @@ case class Enemy() extends JPanel{
 
   def draw(g: Graphics): Unit = {
     g.setColor(Color.CYAN)
-    g.fillRect(E.x, E.y, E.d, E.d)
+    g.fillRect(E.x, E.y, E.dx, E.dy)
   }
   object E{
     val x = 100
     val y = 100
-    val d = 100
+    val dx = 100
+    val dy = 100
   }
 }

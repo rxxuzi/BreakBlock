@@ -7,26 +7,27 @@ import scala.collection.mutable.ArrayBuffer
 
 class Core() extends JPanel {
    //Ball classのList
-   final val balls = ArrayBuffer[Ball]()
+   final val balls = ArrayBuffer[Cube]()
    //Enemy classのList
 
    final val enemys =  ArrayBuffer[Enemy]()
    //StartTime
    private final val startTime = System.currentTimeMillis()
    //Ballの半径
-   private final val rad = 25
+   final val radius = 25
    //SleepTime
    private final val sleepSpeed = 2
    //clickCount
    private final var clickCount = 1 ;private var mx = 300
-private var my = 300 // マウスの座標
+
+   private var my = 300 // マウスの座標
 
    this.setFocusable(true)
    this.setBackground(Color.black)
    this.addMouseListener(new ML())
    this.addMouseMotionListener(new MML())
 
-   balls += Ball(mx, my , 0)
+   balls += Cube(mx, my , 0)
    enemys += Enemy()
 
    override def paintComponent(g: Graphics): Unit = {
@@ -58,7 +59,11 @@ private var my = 300 // マウスの座標
          enemy.draw(g)
       }
       if(clickCount > 2) enemys -= Enemy()
+
+
+
       sleep()
+
 
    }
 
@@ -70,12 +75,12 @@ private var my = 300 // マウスの座標
    //Mouse MotionListener class
    private class MML extends  MouseMotionListener {
       override def mouseDragged(e: MouseEvent): Unit = {
-         mx = e.getX - rad
-         my = e.getY - rad
+         mx = e.getX - radius
+         my = e.getY - radius
       }
       override def mouseMoved(e: MouseEvent): Unit = {
-         mx = e.getX - rad
-         my = e.getY - rad
+         mx = e.getX - radius
+         my = e.getY - radius
       }
    }
 
@@ -83,7 +88,7 @@ private var my = 300 // マウスの座標
    private class ML() extends MouseListener{
       override def mouseClicked(e: MouseEvent): Unit = {
          println("clicked")
-         balls += Ball(e.getX - rad, e.getY - rad, clickCount)
+         balls += Cube(e.getX - radius, e.getY - radius, clickCount)
          clickCount += e.getClickCount
       }
       override def mousePressed(e: MouseEvent): Unit = {}
