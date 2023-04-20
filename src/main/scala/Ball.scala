@@ -2,7 +2,7 @@
 import java.awt.{Color, Graphics}
 import javax.swing.JPanel
 
-case class Cube(a:Int, b:Int, c:Int) {
+case class Ball(a:Int, b:Int, c:Int) {
   private val diameter = new Core().radius * 2
   private val speed = 2
   B.x += a

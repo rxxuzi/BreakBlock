@@ -7,7 +7,9 @@ import scala.collection.mutable.ArrayBuffer
 
 class Core() extends JPanel {
    //Ball classのList
-   final val balls = ArrayBuffer[Cube]()
+   final val balls = ArrayBuffer[Ball]()
+   //Base classのList
+   final val foundation = ArrayBuffer[Base]()
    //Enemy classのList
 
    final val enemys =  ArrayBuffer[Enemy]()
@@ -20,6 +22,8 @@ class Core() extends JPanel {
    //clickCount
    private final var clickCount = 1 ;private var mx = 300
 
+   private final val NumberOfEnemy = 10
+
    private var my = 300 // マウスの座標
 
    this.setFocusable(true)
@@ -27,9 +31,11 @@ class Core() extends JPanel {
    this.addMouseListener(new ML())
    this.addMouseMotionListener(new MML())
 
-   balls += Cube(mx, my , 0)
-   enemys += Enemy()
+   foundation += Base(mx, my , 0)
 
+   for(i <- 0 to NumberOfEnemy){
+      enemys += Enemy(i*50, 0)
+   }
    override def paintComponent(g: Graphics): Unit = {
       super.paintComponent(g)
       draw(g)
@@ -46,8 +52,9 @@ class Core() extends JPanel {
    private def draw(g: Graphics): Unit = {
 
       g.setColor(Color.white)
-      balls(0).B.x = mx
-      balls(0).B.y = my
+      foundation(0).B.x = mx
+      foundation(0).B.y = my
+      foundation(0).draw(g)
 
       for (ball <- balls) {
          ball.draw(g)
@@ -55,10 +62,11 @@ class Core() extends JPanel {
          ball.height = getHeight
       }
 
+
       for(enemy <- enemys){
          enemy.draw(g)
       }
-      if(clickCount > 2) enemys -= Enemy()
+      if(clickCount > 2) enemys -= Enemy(0, 0)
 
 
 
@@ -88,7 +96,7 @@ class Core() extends JPanel {
    private class ML() extends MouseListener{
       override def mouseClicked(e: MouseEvent): Unit = {
          println("clicked")
-         balls += Cube(e.getX - radius, e.getY - radius, clickCount)
+         balls += Ball(e.getX - radius, e.getY - radius, clickCount)
          clickCount += e.getClickCount
       }
       override def mousePressed(e: MouseEvent): Unit = {}
