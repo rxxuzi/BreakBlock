@@ -15,9 +15,9 @@ case class Enemy(a:Int , b:Int) extends JPanel{
     g.setColor(Color.CYAN)
     g.fillRect(E.x, E.y, E.dx, E.dy)
   }
-  object E{
+  private object E{
     var x = 0
-    var y = 0
+    val y = 0
     val dx = 100
     val dy = 100
   }

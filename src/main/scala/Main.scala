@@ -1,10 +1,12 @@
 import javax.swing.{JFrame, JPanel}
-/*
+
+/**
 * Created by IntelliJ IDEA.
 * User: rxxuzi
 * Date: 04-16-23
 * Time: 20-19
 * */
+
 object Main {
   def main(args: Array[String]): Unit = {
     println("Hello world!")

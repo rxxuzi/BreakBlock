@@ -8,6 +8,7 @@ import scala.collection.mutable.ArrayBuffer
 class Core() extends JPanel {
    //Ball classのList
    final val balls = ArrayBuffer[Ball]()
+
    //Base classのList
    final val foundation = ArrayBuffer[Base]()
    //Enemy classのList
@@ -36,6 +37,7 @@ class Core() extends JPanel {
    for(i <- 0 to NumberOfEnemy){
       enemys += Enemy(i*50, 0)
    }
+
    override def paintComponent(g: Graphics): Unit = {
       super.paintComponent(g)
       draw(g)
@@ -62,17 +64,13 @@ class Core() extends JPanel {
          ball.height = getHeight
       }
 
-
+      //ブロックを表示
       for(enemy <- enemys){
          enemy.draw(g)
       }
       if(clickCount > 2) enemys -= Enemy(0, 0)
 
-
-
       sleep()
-
-
    }
 
    private def sleep(): Unit = {
