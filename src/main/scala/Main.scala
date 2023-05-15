@@ -22,6 +22,7 @@ object Main {
 
     val vector = new Vector(0, 0, 0)
     println(vector)
+    System.out.println("Hello Jdk !")
 
   }
 }
